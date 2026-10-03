@@ -93,7 +93,7 @@ export default defineConfig({
     vue({
       template: {
         compilerOptions: {
-          isCustomElement: (tag) => tag.startsWith('magic-'),
+          isCustomElement: (tag) => tag.startsWith('magic-'), //  magic 自定义成自己组件前缀
         },
       },
     }),
