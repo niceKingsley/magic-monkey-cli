@@ -13,9 +13,5 @@
   "dependencies": {
     "@shared/components": "workspace:*",
     "@shared/utils": "workspace:*"
-  },
-  "devDependencies": {
-    "vite": "^8.3.1",
-    "magic-monkey-cli": "^{{CLI_VERSION}}"
   }
 }

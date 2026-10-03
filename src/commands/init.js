@@ -172,26 +172,12 @@ const PRETTIER_CONFIG_CONTENT = `{
 }
 `;
 
-export function getEslintConfig(isVue = false) {
-  if (isVue) {
-    return `import js from '@eslint/js';
-import pluginVue from 'eslint-plugin-vue';
-import prettier from 'eslint-config-prettier';
-import globals from 'globals';
-
-export default [
-  js.configs.recommended,
-  ...pluginVue.configs['flat/recommended'],
-  prettier,
-  {
-    languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-        unsafeWindow: 'readonly',
+const GM_GLOBALS_CONFIG = `        unsafeWindow: 'readonly',
+        monkeyWindow: 'readonly',
+        GM: 'readonly',
         GM_info: 'readonly',
+        GM_addStyle: 'readonly',
+        GM_addElement: 'readonly',
         GM_getValue: 'readonly',
         GM_setValue: 'readonly',
         GM_deleteValue: 'readonly',
@@ -210,7 +196,29 @@ export default [
         GM_getTabs: 'readonly',
         GM_notification: 'readonly',
         GM_setClipboard: 'readonly',
-        GM_log: 'readonly',
+        GM_cookie: 'readonly',
+        GM_webRequest: 'readonly',
+        GM_log: 'readonly',`;
+
+export function getEslintConfig(isVue = false) {
+  if (isVue) {
+    return `import js from '@eslint/js';
+import pluginVue from 'eslint-plugin-vue';
+import prettier from 'eslint-config-prettier';
+import globals from 'globals';
+
+export default [
+  js.configs.recommended,
+  ...pluginVue.configs['flat/recommended'],
+  prettier,
+  {
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+${GM_GLOBALS_CONFIG}
       },
     },
     rules: {
@@ -240,27 +248,7 @@ export default [
       globals: {
         ...globals.browser,
         ...globals.node,
-        unsafeWindow: 'readonly',
-        GM_info: 'readonly',
-        GM_getValue: 'readonly',
-        GM_setValue: 'readonly',
-        GM_deleteValue: 'readonly',
-        GM_listValues: 'readonly',
-        GM_addValueChangeListener: 'readonly',
-        GM_removeValueChangeListener: 'readonly',
-        GM_getResourceText: 'readonly',
-        GM_getResourceURL: 'readonly',
-        GM_registerMenuCommand: 'readonly',
-        GM_unregisterMenuCommand: 'readonly',
-        GM_openInTab: 'readonly',
-        GM_xmlhttpRequest: 'readonly',
-        GM_download: 'readonly',
-        GM_getTab: 'readonly',
-        GM_saveTab: 'readonly',
-        GM_getTabs: 'readonly',
-        GM_notification: 'readonly',
-        GM_setClipboard: 'readonly',
-        GM_log: 'readonly',
+${GM_GLOBALS_CONFIG}
       },
     },
     rules: {

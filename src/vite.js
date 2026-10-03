@@ -2,9 +2,18 @@ import { defineConfig as viteDefineConfig } from 'vite';
 import monkeyPlugin, { cdn, util } from 'vite-plugin-monkey';
 import path from 'node:path';
 import fs from 'node:fs';
+import { createRequire } from 'node:module';
 import { findWorkspaceRoot } from './utils/project.js';
 
 export { cdn, util };
+
+const require = createRequire(import.meta.url);
+let monkeyClientPath = '';
+try {
+  monkeyClientPath = require.resolve('vite-plugin-monkey/dist/client');
+} catch {
+  // fallback if any
+}
 
 function resolveConfig(config = {}) {
   const projectDir = process.cwd();
@@ -35,6 +44,12 @@ function resolveConfig(config = {}) {
         '@shared/components': path.resolve(workspaceRoot, 'shared/components'),
         '@shared/utils': path.resolve(workspaceRoot, 'shared/utils'),
         '@shared': path.resolve(workspaceRoot, 'shared'),
+        ...(monkeyClientPath
+          ? {
+            $: monkeyClientPath,
+            'vite-plugin-monkey/dist/client': monkeyClientPath,
+          }
+          : {}),
         ...(userResolve.alias || {}),
       },
     },
@@ -86,10 +101,34 @@ export function monkey(config = {}) {
 
   const defaultEntry = 'main.js';
 
-  return monkeyFunc({
+  const clientResolverPlugin = monkeyClientPath
+    ? {
+      name: 'magic:client-resolver',
+      enforce: 'pre',
+      resolveId(id) {
+        if (id === '$' || id === 'vite-plugin-monkey/dist/client') {
+          return monkeyClientPath;
+        }
+      },
+    }
+    : null;
+
+  const monkeyPlugins = monkeyFunc({
     entry: config.entry || defaultEntry,
-    server: { mountGmApi: true, open: false },
     ...config,
+    server: {
+      mountGmApi: true,
+      ...(config.server || {}),
+    },
     userscript: mergedUserscript,
   });
+
+  if (clientResolverPlugin) {
+    return Array.isArray(monkeyPlugins)
+      ? [clientResolverPlugin, ...monkeyPlugins]
+      : [clientResolverPlugin, monkeyPlugins];
+  }
+
+  return monkeyPlugins;
 }
+

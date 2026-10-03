@@ -11,13 +11,11 @@
     "build": "vite build"
   },
   "dependencies": {
-    "vue": "^3.5.13",
     "@shared/components": "workspace:*",
-    "@shared/utils": "workspace:*"
+    "@shared/utils": "workspace:*",
+    "vue": "catalog:vue"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.2.1",
-    "vite": "^8.3.1",
-    "magic-monkey-cli": "^{{CLI_VERSION}}"
+    "@vitejs/plugin-vue": "catalog:vue"
   }
 }
