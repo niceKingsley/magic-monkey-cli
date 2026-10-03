@@ -7,6 +7,7 @@ import { devCommand } from './commands/dev.js';
 import { buildCommand } from './commands/build.js';
 import { removeCommand } from './commands/remove.js';
 import { listCommand } from './commands/list.js';
+import { doctorCommand } from './commands/doctor.js';
 
 const pkg = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf-8'));
 const program = new Command();
@@ -56,6 +57,12 @@ program
   .alias('ls')
   .description('列出当前所有子项目状态与技术栈')
   .action(listCommand);
+
+program
+  .command('doctor')
+  .description('体检并自动修复当前 Monorepo 项目配置（ESLint、依赖、Workspace 等）')
+  .option('--no-fix', '仅执行健康检查，不自动修改文件')
+  .action(doctorCommand);
 
 if (process.argv.length <= 2) {
   printBanner();

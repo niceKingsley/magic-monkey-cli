@@ -55,6 +55,7 @@ magic build --all
 | `magic build [name]` | - | 打包构建子项目（`-a` 或 `--all` 全量打包） | `magic build my-script` |
 | `magic list` | `magic ls` | 列出所有子项目状态与技术栈 | `magic list` |
 | `magic remove [name]` | `magic rm` | 安全删除指定子项目 | `magic remove my-script` |
+| `magic doctor` | - | 体检并自动修复当前 Monorepo 项目配置（ESLint、依赖、Workspace 等） | `magic doctor` |
 
 > 所有命令均支持直接传参，或不加参数进入交互式选择向导。
 
@@ -113,18 +114,14 @@ export default defineConfig({
 });
 ```
 
-## 导出工具与进阶
+## 导出模块
 
-CLI 导出了以下核心模块，供 `vite.config.js` 灵活调用：
+CLI 导出以下核心能力，供 `vite.config.js` 或 `eslint.config.mjs` 直接使用：
 
-- **`defineConfig(config)`**：配置定义函数，内置 Monorepo 路径别名（`@`、`@shared/components`、`@shared/utils`）与产物输出路径。
-- **`monkey(options)`**：油猴脚本插件配置函数，底层基于 [vite-plugin-monkey](https://github.com/lisonge/vite-plugin-monkey)，支持其所有构建与油猴元数据配置。
-- **`cdn`**：CDN 辅助工具，支持 `cdn.jsdelivr`、`cdn.unpkg`、`cdn.cdnjs` 等。
-- **`util`**：进阶实用工具：
-  - `util.unimportPreset`：配合 `unplugin-auto-import` 实现 `GM_*` 全局 API 自动按需导入。
-  - `util.dataUrl(mime, content)`：将静态资源快速转换为 Data URL。
-
-> 更多油猴元数据（Userscript Header）与高级配置项，可直接参考 [vite-plugin-monkey 官方文档](https://github.com/lisonge/vite-plugin-monkey)。
+- **`defineConfig`**：内置 Monorepo 别名与产物路径的 Vite 配置函数。
+- **`monkey`**：油猴脚本插件（基于 `vite-plugin-monkey`，默认开启 `mountGmApi`）。
+- **`monkeyGlobals`**：油猴标准全局变量字典（用于 ESLint `...monkeyGlobals` 一行解构）。
+- **`cdn` / `util`**：常用 CDN 辅助方法与自动导入预设。
 
 ## 致谢
 

@@ -10,7 +10,8 @@
     "dev": "magic dev",
     "build": "magic build",
     "build:all": "magic build --all",
-    "list": "magic list"
+    "list": "magic list",
+    "doctor": "magic doctor"
   },
   "devDependencies": {
     "magic-monkey-cli": "^{{CLI_VERSION}}",

@@ -150,60 +150,6 @@ function installDependencies(workspaceRoot, name) {
   console.log(`\n👉 启动开发调试: ${pc.cyan(`magic dev ${name}`)}\n`);
 }
 
-function ensureVueEslintConfig(workspaceRoot) {
-  const eslintPath = path.join(workspaceRoot, 'eslint.config.js');
-  if (!fs.existsSync(eslintPath)) return;
-
-  let content = fs.readFileSync(eslintPath, 'utf-8');
-  let modified = false;
-
-  if (!content.includes('eslint-plugin-vue')) {
-    content = "import pluginVue from 'eslint-plugin-vue';\n" + content;
-
-    if (content.includes('js.configs.recommended,')) {
-      content = content.replace(
-        'js.configs.recommended,',
-        "js.configs.recommended,\n  ...pluginVue.configs['flat/recommended'],"
-      );
-    } else if (content.includes('export default [')) {
-      content = content.replace(
-        'export default [',
-        "export default [\n  ...pluginVue.configs['flat/recommended'],"
-      );
-    }
-
-    if (content.includes('rules:') && !content.includes('vue/multi-word-component-names')) {
-      content = content.replace(
-        'rules: {',
-        "rules: {\n      'vue/multi-word-component-names': 'off',"
-      );
-    }
-
-    fs.writeFileSync(eslintPath, content, 'utf-8');
-    modified = true;
-  }
-
-  const rootPkgPath = path.join(workspaceRoot, 'package.json');
-  if (fs.existsSync(rootPkgPath)) {
-    try {
-      const rootPkg = JSON.parse(fs.readFileSync(rootPkgPath, 'utf-8'));
-      if (!rootPkg.devDependencies?.['eslint-plugin-vue']) {
-        rootPkg.devDependencies = {
-          ...(rootPkg.devDependencies || {}),
-          'eslint-plugin-vue': '^10.11.1',
-        };
-        fs.writeFileSync(rootPkgPath, JSON.stringify(rootPkg, null, 2) + '\n', 'utf-8');
-        modified = true;
-      }
-    } catch {
-      // ignore
-    }
-  }
-
-  if (modified) {
-    logger.info('已自动为 Monorepo 大仓按需增量补全 Vue ESLint 规则支持');
-  }
-}
 
 export async function createCommand(projectName, options = {}) {
   if (!hasWorkspaceRoot()) {
@@ -252,10 +198,6 @@ export async function createCommand(projectName, options = {}) {
   } catch (err) {
     spinner.fail(`生成失败: ${err.message}`);
     process.exit(1);
-  }
-
-  if (meta.framework === 'vue') {
-    ensureVueEslintConfig(workspaceRoot);
   }
 
   installDependencies(workspaceRoot, meta.name);

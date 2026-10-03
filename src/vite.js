@@ -6,6 +6,7 @@ import { createRequire } from 'node:module';
 import { findWorkspaceRoot } from './utils/project.js';
 
 export { cdn, util };
+export { monkeyGlobals } from './globals.js';
 
 const require = createRequire(import.meta.url);
 let monkeyClientPath = '';
