@@ -1,0 +1,10 @@
+packages:
+  - 'packages/*'
+  - 'shared'
+  - 'shared/*'
+
+onlyBuiltDependencies:
+  - esbuild
+
+allowBuilds:
+  esbuild: true

@@ -1,0 +1,19 @@
+{
+  "name": "{{NAME}}",
+  "version": "1.0.0",
+  "private": true,
+  "description": "{{DESCRIPTION}}",
+  "type": "module",
+  "scripts": {
+    "magic": "magic",
+    "create": "magic create",
+    "dev": "magic dev",
+    "build": "magic build",
+    "build:all": "magic build --all",
+    "list": "magic list"
+  },
+  "devDependencies": {
+    "magic-monkey-cli": "^{{CLI_VERSION}}",
+    "vite": "^8.3.1"
+  }
+}

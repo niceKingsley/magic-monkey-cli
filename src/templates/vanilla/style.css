@@ -1,0 +1,27 @@
+.card {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999999;
+  padding: 14px 18px;
+  background: #ffffff;
+  color: #1f2937;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  font-size: 14px;
+  min-width: 200px;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 15px;
+  color: #111827;
+  margin-bottom: 6px;
+}
+
+.card-desc {
+  margin: 0 0 12px 0;
+  color: #6b7280;
+  font-size: 13px;
+}

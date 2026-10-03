@@ -1,0 +1,23 @@
+{
+  "name": "{{NAME}}",
+  "version": "0.0.1",
+  "private": true,
+  "description": "{{DESCRIPTION}}",
+  "main": "main.js",
+  "author": "{{AUTHOR}}",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "vue": "^3.5.13",
+    "@shared/components": "workspace:*",
+    "@shared/utils": "workspace:*"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "vite": "^8.3.1",
+    "magic-monkey-cli": "^{{CLI_VERSION}}"
+  }
+}

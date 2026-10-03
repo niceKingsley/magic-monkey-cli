@@ -1,0 +1,55 @@
+{
+  "name": "magic-monkey-cli",
+  "version": "0.0.3",
+  "description": "油猴脚本 (Userscript) Monorepo 多包开发与构建脚手架",
+  "author": "kingsley",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niceKingsley/magic-monkey-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/niceKingsley/magic-monkey-cli/issues"
+  },
+  "homepage": "https://github.com/niceKingsley/magic-monkey-cli#readme",
+  "bin": {
+    "magic": "bin/magic.js",
+    "magic-monkey-cli": "bin/magic.js"
+  },
+  "main": "./src/index.js",
+  "files": [
+    "bin",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": "./src/index.js",
+    "./vite": "./src/vite.js"
+  },
+  "keywords": [
+    "tampermonkey",
+    "userscript",
+    "monkey",
+    "vite",
+    "cli",
+    "scaffold",
+    "monorepo",
+    "vue"
+  ],
+  "scripts": {
+    "test": "node bin/magic.js -v"
+  },
+  "dependencies": {
+    "commander": "^13.1.0",
+    "ora": "^8.2.0",
+    "picocolors": "^1.1.1",
+    "prompts": "^2.4.2",
+    "vite": "^8.3.1",
+    "vite-plugin-monkey": "^8.1.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
