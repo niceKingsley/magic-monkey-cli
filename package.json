@@ -1,6 +1,6 @@
 {
   "name": "magic-monkey-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "油猴脚本 Monorepo 多包开发与构建脚手架",
   "author": "kingsley",
   "license": "MIT",
