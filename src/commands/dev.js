@@ -40,7 +40,7 @@ export async function devCommand(projectName) {
   const projects = getProjects(workspaceRoot);
 
   if (projects.length === 0) {
-    logger.warn('packages 目录下暂无子项目，请先运行 magic create 创建');
+    logger.warn('packages 目录下暂无子项目，请先运行 magic gen 创建');
     return;
   }
 

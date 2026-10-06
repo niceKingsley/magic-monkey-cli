@@ -1,6 +1,6 @@
 # magic-monkey-cli
 
-油猴脚本 (Userscript) Monorepo 多包开发与构建脚手架。
+油猴脚本 Monorepo 多包开发与构建脚手架。
 
 ## 特性
 
@@ -32,7 +32,9 @@ magic dev
 ### 3. 创建更多子项目
 
 ```bash
-magic create my-new-script
+magic gen my-new-script
+# 或在大仓内直接通过包管理器运行
+pnpm gen my-new-script
 ```
 
 ### 4. 打包构建
@@ -50,7 +52,7 @@ magic build --all
 | 命令 | 别名 | 说明 | 示例 |
 | :--- | :--- | :--- | :--- |
 | `magic init [name]` | `magic new` | 初始化全新的 Monorepo 大仓 | `magic init my-workspace` |
-| `magic create [name]` | - | 创建新的油猴脚本子项目 | `magic create my-script -f vue` |
+| `magic generate [name]` | `magic gen`, `magic create` | 创建新的油猴脚本子项目 | `magic gen my-script -f vue` |
 | `magic dev [name]` | - | 启动子项目本地开发服务器与 HMR | `magic dev my-script` |
 | `magic build [name]` | - | 打包构建子项目（`-a` 或 `--all` 全量打包） | `magic build my-script` |
 | `magic list` | `magic ls` | 列出所有子项目状态与技术栈 | `magic list` |

@@ -2,7 +2,7 @@
 
 > {{DESCRIPTION}}
 
-油猴脚本 (Userscript) Monorepo 多包开发项目。
+油猴脚本 Monorepo 多包开发项目。
 
 ## 📁 目录结构
 
@@ -20,7 +20,7 @@
 
 ```bash
 # 创建新的油猴脚本子项目 (Vue 3 / Vanilla)
-pnpm create
+pnpm gen
 
 # 启动某个子项目的本地开发调试
 pnpm dev

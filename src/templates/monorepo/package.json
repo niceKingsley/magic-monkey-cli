@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "magic": "magic",
-    "create": "magic create",
+    "gen": "magic gen",
     "dev": "magic dev",
     "build": "magic build",
     "build:all": "magic build --all",

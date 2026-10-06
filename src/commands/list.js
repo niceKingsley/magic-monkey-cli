@@ -35,7 +35,7 @@ export function listCommand() {
   const projects = getProjects(workspaceRoot);
 
   if (projects.length === 0) {
-    logger.warn('当前仓库没有任何子项目，可运行 magic create 创建！');
+    logger.warn('当前仓库没有任何子项目，可运行 magic gen 创建！');
     return;
   }
 

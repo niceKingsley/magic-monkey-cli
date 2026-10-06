@@ -14,7 +14,7 @@ const program = new Command();
 
 program
   .name('magic')
-  .description('Magic CLI - 油猴脚本 (Userscript) Monorepo 开发与构建脚手架')
+  .description('Magic CLI - 油猴脚本 Monorepo 开发与构建脚手架')
   .version(pkg.version, '-v, --version', '查看当前 CLI 版本');
 
 program
@@ -28,7 +28,8 @@ program
   .action(initCommand);
 
 program
-  .command('create [projectName]')
+  .command('generate [projectName]')
+  .aliases(['gen', 'create'])
   .description('创建新的油猴脚本子项目 (Vue / Vanilla)')
   .option('-f, --framework <framework>', '技术栈: vue | vanilla')
   .option('-d, --description <description>', '项目描述')

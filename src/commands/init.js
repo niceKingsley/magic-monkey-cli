@@ -331,7 +331,7 @@ ${pc.bold(pc.green('========================================='))}
 👉 快速上手:
   ${pc.cyan(`cd ${meta.name}`)}
   ${pc.cyan(`magic dev`)}      ${pc.gray('# 启动脚本本地开发与 HMR')}
-  ${pc.cyan(`magic create`)}   ${pc.gray('# 在 packages/ 下创建更多油猴脚本')}
+  ${pc.cyan(`magic gen`)}      ${pc.gray('# 在 packages/ 下创建更多油猴脚本')}
   ${pc.cyan(`magic build -a`)}  ${pc.gray('# 全量编译所有脚本产物至 dist/')}${meta.eslint ? `\n  ${pc.cyan(`pnpm lint`)}     ${pc.gray('# 执行 ESLint 语法与规范检查')}` : ''}
 `);
 }

@@ -325,7 +325,7 @@ export function doctorCommand(options = {}) {
       }
     });
   } else {
-    console.log(`  ${pc.yellow('ℹ')} 子项目列表: 当前暂无子项目，可运行 ${pc.cyan('magic create')} 创建`);
+    console.log(`  ${pc.yellow('ℹ')} 子项目列表: 当前暂无子项目，可运行 ${pc.cyan('magic gen')} 创建`);
   }
 
   console.log(pc.bold(pc.green('\n🎉 体检完成！项目配置处于健康状态。\n')));
